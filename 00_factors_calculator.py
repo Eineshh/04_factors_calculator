@@ -15,15 +15,13 @@ def statement_generator(text, decoration):
     return ""
 
 
-
 # displays instructions / information
 def instructions():
     statement_generator("Instruction / Information", "=")
     print()
-    print("Please choose a data type (image / text / integer)")
+    print("Please enter a factor")
     print()
-    print("This program assumes that images are being represented in 24 bit color (ie: 24 bits per pixel).  For text, "
-          "we assume that ascii encoding is being used (8 bits per character).")
+    print("This program calculates factors")
     print()
     print("Complete as many calculations as necessary, pressing <enter> at the end of each calculation or any key to "
           "quit.")
@@ -36,20 +34,20 @@ def num_check(question):
     valid = False
     while not valid:
 
-        error = "Please enter an integer that is more than " "(or equal to) {}".format(low)
+        error = "Please enter a factor that is more than " "(or equal to) {}".format(int)
 
         try:
 
             # ask user to enter a number
             response = int(input(question))
 
-            # checks number is more than zero
-            if response >= low:
-                return response
-
             # outputs error if input is invalid
-            else:
+            if response < int:
                 print(error)
+
+            # checks number is more than zero
+            else:
+                return response
             print()
 
         except ValueError:
@@ -57,23 +55,40 @@ def num_check(question):
 
 
 # gets factors, returns a sorted list
-def get_factors(to_factor):
-        # get integer (must be >= 0)
-        var_integer = num_check("Please enter an integer: ", 0)
+def get_factors():
 
-        var_binary = "{0:b}".format(var_integer)
+    # get factors (must be >= 0)
+    get_factors() == int("Please enter a factor: ", 0)
 
-        # calculate # of bits (length of string above)
-        num_bits = len(var_binary)
+    import random
 
-        # output answer with working
-        print()
-        print("{} in binary is {}".format(var_integer, var_binary))
-        print("# of bits is {}".format(num_bits))
-        print()
+    # set up a list...
 
-        return ""
+    my_list = []
 
+    # generate 4 random numbers between 1 & 10...
+    for item in range(0, 4):
+        # generate random number between 1 & 10
+        random_num = random.randint(1, 10)
+
+        # add number to list
+        my_list.append(random_num)
+
+    # print the *unsorted*  list...
+    print(my_list)
+
+    # sort the list
+    my_list.sort()
+
+    my_list_len = len(my_list)
+
+    # print the sorted list
+    print()
+    print(my_list)
+    print()
+    print("The line has {} items".format(my_list_len))
+
+    return ""
 
 
 # Main Routine goes here
@@ -97,7 +112,7 @@ while keep_going == "":
     var_to_factor = num_check("Number?: ")
 
     if var_to_factor != 1:
-        factor_list = get_factors(var_to_factor)
+        factor_list = get_factors()
     else:
         factor_list = ""
         comment = "One is UNITY!  It only has one factor.  Itself :)"
@@ -105,7 +120,7 @@ while keep_going == "":
     # comments for squares / primes
     if len(factor_list) == 2:
         comment = "{} is a prime number.".format(var_to_factor)
-    elif len(factor_list) %2 == 1:
+    elif len(factor_list) % 2 == 1:
         comment = "{} is a perfect square".format(var_to_factor)
 
     # output factors and comment
