@@ -1,12 +1,12 @@
 # Functions go here
 
-# Puts series of symbols at start and end of text
+# Puts a series of symbols at start and end of text
 def statement_generator(text, decoration):
-    # Make string with five character
+    # Make string with five characters
     ends = decoration * 5
 
-    # add decoration to start and end of statement
-    statement = "{}  {}  {}".format(ends, text, ends)
+    # Add decoration to start and end of statement
+    statement = "{} {} {}".format(ends, text, ends)
 
     print()
     print(statement)
@@ -17,14 +17,20 @@ def statement_generator(text, decoration):
 
 # displays instructions / information
 def instructions():
-    statement_generator("Instruction / Information", "=")
+    statement_generator("Instructions / Information", "-")
+    print("This program finds all the factors of an integer,")
     print()
-    print("Please enter a factor")
+    print("The Integer must be a whole number greater than or equal to 1, and less than or equal to 200,")
     print()
-    print("This program calculates factors")
+    print("This program will tell you if it's a UNITY, prime number or a perfect square!,")
     print()
-    print("Complete as many calculations as necessary, pressing <enter> at the end of each calculation or any key to "
-          "quit.")
+    print("Once a integer is entered, the program will display all of its factors in an ordered list.")
+    print()
+    print(
+        "Complete as many calculations as necessary, pressing <enter> at the end of each calculation or any key to "
+        "quit.")
+    print()
+    print("-" * 113)
     print()
     return ""
 
@@ -34,61 +40,56 @@ def num_check(question):
     valid = False
     while not valid:
 
-        error = "Please enter a factor that is more than " "(or equal to) {}".format(int)
+        error = "Please enter an integer that is more than or equal to 1 and less than or equal to 200"
 
         try:
 
             # ask user to enter a number
             response = int(input(question))
 
-            # outputs error if input is invalid
-            if response < int:
-                print(error)
-
-            # checks number is more than zero
-            else:
+            # checks number is more than, or equal to, one
+            if 1 <= response <= 200:
                 return response
-            print()
+
+            # outputs error if input is invalid
+            else:
+                print(error)
+                print()
 
         except ValueError:
             print(error)
+            print()
 
 
 # gets factors, returns a sorted list
-def get_factors():
+def get_factors(to_factor):
+    # list to hold factors
+    factors_list = []
 
-    # get factors (must be >= 0)
-    get_factors() == int("Please enter a factor: ", 0)
+    # Square root to_factor to find 'half way'
+    limit = int(to_factor ** 0.5)
 
-    import random
+    # find factor pairs and add to list
+    for item in range(1, limit + 1):
 
-    # set up a list...
+        # check factor is not 1 (unity)
+        if to_factor == 1:
+            break
 
-    my_list = []
+        # check if number is a factor
+        result = to_factor % item
+        factor_1 = int(to_factor // item)
 
-    # generate 4 random numbers between 1 & 10...
-    for item in range(0, 4):
-        # generate random number between 1 & 10
-        random_num = random.randint(1, 10)
+        # add factor to list if it is not already in there
+        if result == 0:
+            factors_list.append(item)
 
-        # add number to list
-        my_list.append(random_num)
+        if factor_1 != item and result == 0:
+            factors_list.append(factor_1)
 
-    # print the *unsorted*  list...
-    print(my_list)
-
-    # sort the list
-    my_list.sort()
-
-    my_list_len = len(my_list)
-
-    # print the sorted list
-    print()
-    print(my_list)
-    print()
-    print("The line has {} items".format(my_list_len))
-
-    return ""
+    # output
+    factors_list.sort()
+    return factors_list
 
 
 # Main Routine goes here
@@ -97,8 +98,7 @@ def get_factors():
 statement_generator("Factors Calculator", "-")
 
 # Display instructions if user has not used the program before
-first_time = input("Press <enter> to see the instructions or any key to continue")
-
+first_time = input("Press <enter> to see the instructions or any key to continue: ")
 if first_time == "":
     instructions()
 
@@ -112,10 +112,10 @@ while keep_going == "":
     var_to_factor = num_check("Number?: ")
 
     if var_to_factor != 1:
-        factor_list = get_factors()
+        factor_list = get_factors(var_to_factor)
     else:
         factor_list = ""
-        comment = "One is UNITY!  It only has one factor.  Itself :)"
+        comment = "One is UNITY as it has one factor!"
 
     # comments for squares / primes
     if len(factor_list) == 2:
@@ -127,7 +127,7 @@ while keep_going == "":
 
     # Generate heading...
     if var_to_factor == 1:
-        heading = "One is special..."
+        heading = ""
 
     else:
         heading = "Factors of {}".format(var_to_factor)
@@ -139,9 +139,9 @@ while keep_going == "":
     print(comment)
 
     print()
-    keep_going = input("Press <enter> to continue or any key to quit ")
+    keep_going = input("Press <enter> to continue or any key to quit: ")
     print()
 
 print()
-print("Thank you for using the factors calculator")
+print("Thank you for using the factors calculator :)")
 print()

@@ -1,23 +1,24 @@
 # checks input is a number more than a given value
-def num_check(question):
+def num_check(question, low):
     valid = False
     while not valid:
 
-        error = "Please enter a factor that is more than " "(or equal to) {}".format(int)
+        error = "Please enter a integer that is more than (or equal to) {}".format(low)
 
         try:
 
             # ask user to enter a number
             response = int(input(question))
 
-            # checks number is more than zero
-            if not response < int:
+            # checks number is more than, or equal to, one
+            if 1 <= response >= 200:
                 return response
 
-            # outputs error if input is invalid
+        # outputs error if input is invalid
             else:
                 print(error)
-            print()
+                print()
 
         except ValueError:
             print(error)
+            print()
