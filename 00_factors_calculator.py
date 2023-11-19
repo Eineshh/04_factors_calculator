@@ -17,7 +17,7 @@ def statement_generator(text, decoration):
 
 # displays instructions / information
 def instructions():
-    statement_generator("Instructions / Information", "-")
+    statement_generator("Instructions / Information", "-" * 8)
     print("This program finds all the factors of an integer,")
     print()
     print("The Integer must be a whole number greater than or equal to 1, and less than or equal to 200,")
@@ -30,7 +30,7 @@ def instructions():
         "Complete as many calculations as necessary, pressing <enter> at the end of each calculation or any key to "
         "quit.")
     print()
-    print("-" * 113)
+    print("-" * 111)
     print()
     return ""
 
@@ -95,7 +95,7 @@ def get_factors(to_factor):
 # Main Routine goes here
 
 # Heading
-statement_generator("Factors Calculator", "-")
+statement_generator("Factors Calculator", "-" * 4)
 
 # Display instructions if user has not used the program before
 first_time = input("Press <enter> to see the instructions or any key to continue: ")
@@ -109,13 +109,13 @@ while keep_going == "":
     comment = ""
 
     # ask user for number to be factored...
-    var_to_factor = num_check("Number?: ")
+    var_to_factor = num_check("Integer: ")
 
     if var_to_factor != 1:
         factor_list = get_factors(var_to_factor)
     else:
         factor_list = ""
-        comment = "One is UNITY as it has one factor!"
+        comment = "One is UNITY as it only has one factor!"
 
     # comments for squares / primes
     if len(factor_list) == 2:
@@ -133,8 +133,6 @@ while keep_going == "":
         heading = "Factors of {}".format(var_to_factor)
 
     # Output factors and comment
-    statement_generator(heading, "*")
-    print()
     print(factor_list)
     print(comment)
 
@@ -144,4 +142,3 @@ while keep_going == "":
 
 print()
 print("Thank you for using the factors calculator :)")
-print()
